@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: document-manager
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: wil_database
+          property: connectionString
